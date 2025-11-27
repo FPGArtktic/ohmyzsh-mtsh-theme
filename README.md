@@ -56,7 +56,7 @@ This theme was born from daily frustration of switching between repos and losing
 ### Quick Install
 ```bash
 # Clone the repository
-git clone https://github.com/YourUsername/mtsh-theme.git
+git clone https://github.com/FPGArtktic/ohmyzsh-mtsh-theme.git
 
 # Copy theme to Oh My Zsh custom themes directory
 cp mtsh-theme/mtsh.zsh-theme ~/.oh-my-zsh/custom/themes/
