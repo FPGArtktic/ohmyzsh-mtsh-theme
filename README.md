@@ -4,6 +4,8 @@
 [![Zsh](https://img.shields.io/badge/zsh-5.0+-green.svg)](https://www.zsh.org/)
 [![Oh My Zsh](https://img.shields.io/badge/oh--my--zsh-compatible-brightgreen.svg)](https://ohmyz.sh/)
 
+
+
 A beautiful and feature-rich Zsh theme that provides comprehensive system and Git information in an elegant frame. Perfect for developers who want to stay informed about their environment at a glance.
 
 
@@ -52,6 +54,19 @@ This theme was born from daily frustration of switching between repos and losing
 ### Prerequisites
 - [Zsh](https://www.zsh.org/) (5.0+)
 - [Oh My Zsh](https://ohmyz.sh/)
+- **Powerline Fonts** (required for proper display of symbols)
+
+#### Install Powerline Fonts
+```bash
+# clone
+git clone https://github.com/powerline/fonts.git --depth=1
+# install
+cd fonts
+./install.sh
+# clean-up a bit
+cd ..
+rm -rf fonts
+```
 
 ### Quick Install
 ```bash
