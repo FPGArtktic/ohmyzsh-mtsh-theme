@@ -26,7 +26,7 @@ A beautiful and feature-rich Zsh theme that provides comprehensive system and Gi
 - **Sync Status** - Behind/ahead status with remote repository
 - **Smart Fetch Detection** - Indicates when remote info might be outdated (⚡)
 - **Fetch Needed Indicator** - Shows ⚡ when local remote refs are older than 5 minutes
-- 
+  
 ![MTSH Theme Preview](img/some-work.jpg)
 ![No Repository](img/norepo.jpg)
 ![Git Integration Demo](img/behind.jpg)
@@ -164,12 +164,15 @@ This project is licensed under the GNU General Public License v3.0 - see the [LI
 
 **Mateusz Okulanis** - *FPGArtktic@outlook.com*
 
+[Website](https://fpgartktic.github.io/about/)
+
+
 ## 🙏 Acknowledgments
 
 - Inspired by various Zsh themes in the community
 - Built for developers who love detailed, informative prompts
 - Optimized for modern terminal emulators with 256-color support
-
+- I use arch btw
 ---
 
 ⭐ **Star this repo if you find it useful!** ⭐
