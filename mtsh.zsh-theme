@@ -112,7 +112,7 @@ precmd_mtsh() {
     # Frame (visual separator)
     local line="───────────────────────────────────────────────────────────────────────────"
     print -P "┌${line}┐"
-    print -P "│ ${elapsed}${C_BLUE}${current_date} ${current_time}${C_RESET} | ${C_MAGENTA}IPv4: ${ip_addr}${C_RESET}"
+    print -P "│ ${elapsed}${C_BLUE}${current_date}${C_RESET} ${C_GREEN}$(date '+%H:%M:%S')${C_RESET} | ${C_MAGENTA}IPv4: ${ip_addr}${C_RESET}"
     print -P "│ ${C_CYAN}CPU: ${cpu_usage}%%${C_RESET} | ${C_GREEN}RAM: ${ram_info}${C_RESET} | ${C_ORANGE}Users: ${users_count}${C_RESET}"
     print -P "│ ${C_YELLOW}${current_pwd}${C_RESET} | ${git_info}"
     print -P "└${line}┘"
