@@ -15,7 +15,9 @@ A beautiful and feature-rich Zsh theme that provides comprehensive system and Gi
 ### 📊 System Information
 - **Date & Time** - Current date and time display
 - **IP Address** - Your current IPv4 address
+- **CPU Usage** - Real-time processor utilization percentage
 - **RAM Usage** - Memory consumption (used/total)
+- **Logged Users** - Number of unique users currently logged in
 - **Command Timing** - Execution time for the last command
 
 ![System Info Demo](img/after_edit.jpg)
@@ -25,7 +27,7 @@ A beautiful and feature-rich Zsh theme that provides comprehensive system and Gi
 - **Working Directory Status** - Clean/Dirty state with color coding
 - **Sync Status** - Behind/ahead status with remote repository
 - **Smart Fetch Detection** - Indicates when remote info might be outdated (⚡)
-- **Fetch Needed Indicator** - Shows ⚡ when local remote refs are older than 5 minutes
+- **Fetch Needed Indicator** - Shows ⚡ when local remote refs are older than 2 minutes
   
 ![MTSH Theme Preview](img/some-work.jpg)
 ![No Repository](img/norepo.jpg)
@@ -36,6 +38,12 @@ A beautiful and feature-rich Zsh theme that provides comprehensive system and Gi
 - **Dark Theme Optimized** - Colors designed for dark backgrounds
 - **70-Character Frame** - Clean, consistent visual layout
 - **Real-time Updates** - Information updates with each command
+- **Instant CPU Monitoring** - Fast CPU usage detection using `top` snapshots
+- **Multi-user Awareness** - Shows logged users count for server environments
+- **Performance Optimized** - Non-blocking system information gathering
+- **Instant CPU Monitoring** - Fast CPU usage detection using `/proc/stat` and `top`
+- **Multi-user Awareness** - Shows logged users count for server environments
+- **Performance Optimized** - Non-blocking system information gathering
 
 ### 💡 Why I Created This Theme
 
@@ -94,7 +102,7 @@ source ~/.zshrc
 The theme uses a carefully selected 256-color palette optimized for dark backgrounds:
 
 | Element | Color | Description |
-|---------|-------|-------------|
+|---------|-------|-----------|
 | Date/Time | Bright Blue (`117`) | Easy to read timestamp |
 | Directory | Bright Yellow (`228`) | Current working directory |
 | Git Branch | Bright Magenta (`213`) | Git branch name |
@@ -103,7 +111,10 @@ The theme uses a carefully selected 256-color palette optimized for dark backgro
 | Git Behind | Red (`210`) | Behind remote commits |
 | Git Ahead | Green (`121`) | Ahead of remote commits |
 | IP Address | Bright Magenta (`213`) | Network information |
+| CPU Usage | Bright Cyan (`159`) | Processor utilization |
 | RAM Usage | Bright Green (`121`) | System memory |
+| Users Count | Orange (`208`) | Logged users indicator |
+| Users Count | Orange (`208`) | Logged users indicator |
 
 ## 📸 Theme Examples
 
@@ -130,7 +141,7 @@ The theme uses a carefully selected 256-color palette optimized for dark backgro
 | `⇣2 behind` | 2 commits behind remote |
 | `⇣1 ⇡2` | Behind and ahead (diverged) |
 | `⚠ no remote` | No remote branch configured |
-| `⚡` | Remote info may be outdated (>5min) - run `git fetch` |
+| `⚡` | Remote info may be outdated (>2min) - consider `git fetch` |
 
 ## ⚙️ Configuration
 

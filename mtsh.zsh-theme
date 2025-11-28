@@ -19,12 +19,17 @@ precmd_mtsh() {
     local C_GREEN='%F{121}'     # bright green
     local C_RED='%F{210}'       # bright red/coral
     local C_CYAN='%F{159}'      # bright cyan
+    local C_ORANGE='%F{208}'    # orange
     local C_WHITE='%F{255}'     # white
     local C_RESET='%f'
 
     # Date and time
     local current_time=$(date '+%H:%M:%S')
     local current_date=$(date '+%Y-%m-%d')
+
+    # CPU usage (quick snapshot)
+    local cpu_usage=$(top -bn1 | grep "Cpu(s)" | sed "s/.*, *\([0-9.]*\)%* id.*/\1/" | awk '{printf "%.0f", 100 - $1}' 2>/dev/null)
+    [[ -z "$cpu_usage" ]] && cpu_usage="N/A"
 
     # IPv4 address
     local ip_addr=$(ip route get 8.8.8.8 2>/dev/null | awk '{print $7}')
@@ -36,7 +41,7 @@ precmd_mtsh() {
         local end_time=$(date +%s%N)
         local diff_ns=$((end_time - MTSH_CMD_START_TIME))
         local diff_s=$(awk "BEGIN {printf \"%.3f\", $diff_ns/1000000000}")
-        elapsed="${C_RED} Elapsed time: ${diff_s}s${C_RESET} | "
+        elapsed="${C_RED}Elapsed time: ${diff_s}s${C_RESET} | "
         unset MTSH_CMD_START_TIME
     fi
 
@@ -56,10 +61,18 @@ precmd_mtsh() {
         local remote_branch="origin/${branch}"
         # Show sync status: behind, ahead, both, synced, or no remote
         if git rev-parse --verify "$remote_branch" &>/dev/null; then
-            # Check if remote info is older than 5 minutes, if so, suggest fetch
-            local remote_ref=".git/refs/remotes/origin/${branch}"
+            # Check if remote info is older than 2 minutes, if so, suggest fetch
+            local git_dir=$(git rev-parse --git-dir 2>/dev/null)
+            local remote_ref="${git_dir}/refs/remotes/origin/${branch}"
             local fetch_needed=""
-            if [[ -f "$remote_ref" ]] && [[ $(($(date +%s) - $(stat -c %Y "$remote_ref" 2>/dev/null || echo 0))) -gt 300 ]]; then
+            if [[ -f "$remote_ref" ]]; then
+                local ref_time=$(stat -c %Y "$remote_ref" 2>/dev/null || echo 0)
+                local current_time=$(date +%s)
+                local age=$((current_time - ref_time))
+                if [[ $age -gt 120 ]]; then
+                    fetch_needed="${C_YELLOW}⚡${C_RESET}"
+                fi
+            else
                 fetch_needed="${C_YELLOW}⚡${C_RESET}"
             fi
             
@@ -93,11 +106,15 @@ precmd_mtsh() {
     # RAM info (used/total)
     local ram_info=$(free -h | awk '/^Mem:/ {print $3"/"$2}')
 
+    # Logged users count
+    local users_count=$(who | cut -d ' ' -f 1 | sort | uniq | wc -l)
+
     # Frame (visual separator)
     local line="───────────────────────────────────────────────────────────────────────────"
     print -P "┌${line}┐"
     print -P "│ ${elapsed}${C_BLUE}${current_date} ${current_time}${C_RESET} | ${C_MAGENTA}IPv4: ${ip_addr}${C_RESET}"
-    print -P "│ ${C_YELLOW}${current_pwd}${C_RESET} | ${C_GREEN}RAM: ${ram_info}${C_RESET} | ${git_info}"
+    print -P "│ ${C_CYAN}CPU: ${cpu_usage}%%${C_RESET} | ${C_GREEN}RAM: ${ram_info}${C_RESET} | ${C_ORANGE}Users: ${users_count}${C_RESET}"
+    print -P "│ ${C_YELLOW}${current_pwd}${C_RESET} | ${git_info}"
     print -P "└${line}┘"
 }
 
