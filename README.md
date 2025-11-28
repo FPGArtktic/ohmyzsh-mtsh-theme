@@ -74,7 +74,7 @@ rm -rf fonts
 git clone https://github.com/FPGArtktic/ohmyzsh-mtsh-theme.git
 
 # Copy theme to Oh My Zsh custom themes directory
-cp mtsh-theme/mtsh.zsh-theme ~/.oh-my-zsh/custom/themes/
+cp ohmyzsh-mtsh-theme/mtsh.zsh-theme ~/.oh-my-zsh/custom/themes/
 
 # Set the theme in your .zshrc file
 sed -i 's/ZSH_THEME=".*"/ZSH_THEME="mtsh"/' ~/.zshrc
